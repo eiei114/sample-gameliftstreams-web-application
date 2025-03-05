@@ -1,0 +1,229 @@
+{
+    "variables": [
+        {
+            "type": "property",
+            "property": "region",
+            "inputType": "select",
+            "id": "region",
+            "label": "Region",
+            "defaultValue": "us-west-2",
+            "visible": true,
+            "values": [
+                {
+                    "value": "us-west-2",
+                    "label": "US West (Oregon)"
+                },
+                {
+                    "value": "us-east-1",
+                    "label": "US East (N. Virginia)"
+                },
+                {
+                    "value": "eu-west-1",
+                    "label": "EU (Ireland)"
+                },
+                {
+                    "value": "ap-northeast-1",
+                    "label": "Asia Pacific (Tokyo)"
+                }
+            ]
+        }
+    ],
+    "widgets": [
+        {
+            "height": 3,
+            "width": 24,
+            "y": 9,
+            "x": 0,
+            "type": "metric",
+            "properties": {
+                "metrics": [
+                    [ { "expression": "SEARCH('{AWS/GameLiftStreams,ApplicationId,StreamClass} MetricName=\"FrameCaptureRate\"', 'Average', 300)", "id": "e1", "period": 300, "region": "us-west-2" } ]
+                ],
+                "view": "timeSeries",
+                "stacked": false,
+                "region": "us-west-2",
+                "period": 300,
+                "stat": "Average",
+                "title": "Frame Capture Rate",
+                "legend": {
+                    "position": "right"
+                },
+                "liveData": true
+            }
+        },
+        {
+            "height": 3,
+            "width": 24,
+            "y": 12,
+            "x": 0,
+            "type": "metric",
+            "properties": {
+                "metrics": [
+                    [ { "expression": "SEARCH('{AWS/GameLiftStreams,ApplicationId,StreamClass} MetricName=\"AudioCaptureRate\"', 'Average', 300)", "id": "e1", "period": 300, "region": "us-west-2" } ]
+                ],
+                "view": "timeSeries",
+                "stacked": false,
+                "region": "us-west-2",
+                "title": "Audio Capture Rate",
+                "period": 300,
+                "stat": "Sum",
+                "legend": {
+                    "position": "right"
+                }
+            }
+        },
+        {
+            "height": 3,
+            "width": 12,
+            "y": 15,
+            "x": 0,
+            "type": "metric",
+            "properties": {
+                "metrics": [
+                    [ { "expression": "SEARCH('{AWS/GameLiftStreams,ApplicationId,StreamClass} MetricName=\"MemoryUtilization\"', 'Average', 300)", "id": "e1", "period": 300, "region": "us-west-2" } ]
+                ],
+                "view": "timeSeries",
+                "stacked": true,
+                "region": "us-west-2",
+                "title": "Memory Utilization",
+                "period": 300,
+                "stat": "Maximum",
+                "legend": {
+                    "position": "right"
+                }
+            }
+        },
+        {
+            "height": 3,
+            "width": 12,
+            "y": 15,
+            "x": 12,
+            "type": "metric",
+            "properties": {
+                "metrics": [
+                    [ { "expression": "SEARCH('{AWS/GameLiftStreams,ApplicationId,StreamClass} MetricName=\"CPUUtilization\"', 'Average', 300)", "id": "e1", "period": 300, "region": "us-west-2" } ]
+                ],
+                "view": "timeSeries",
+                "stacked": true,
+                "region": "us-west-2",
+                "period": 300,
+                "stat": "Maximum",
+                "title": "CPU Utilization",
+                "legend": {
+                    "position": "right"
+                }
+            }
+        },
+        {
+            "height": 3,
+            "width": 12,
+            "y": 18,
+            "x": 12,
+            "type": "metric",
+            "properties": {
+                "metrics": [
+                    [ { "expression": "SEARCH('{AWS/GameLiftStreams,ApplicationId,StreamClass} MetricName=\"SessionLength\"', 'Average', 300)", "id": "e1", "period": 300, "region": "us-west-2" } ]
+                ],
+                "view": "timeSeries",
+                "stacked": true,
+                "region": "us-west-2",
+                "period": 300,
+                "stat": "Sum",
+                "title": "Session Length",
+                "legend": {
+                    "position": "right"
+                }
+            }
+        },
+        {
+            "height": 3,
+            "width": 12,
+            "y": 18,
+            "x": 0,
+            "type": "metric",
+            "properties": {
+                "metrics": [
+                    [ { "expression": "SEARCH('{AWS/GameLiftStreams,ApplicationId,StreamClass} MetricName=\"RoundTripTime\"', 'Average', 300)", "id": "e1", "period": 300, "region": "us-west-2" } ]
+                ],
+                "view": "timeSeries",
+                "stacked": true,
+                "region": "us-west-2",
+                "period": 300,
+                "stat": "Sum",
+                "title": "Round Trip Time",
+                "legend": {
+                    "position": "right"
+                }
+            }
+        },
+        {
+            "height": 5,
+            "width": 24,
+            "y": 0,
+            "x": 0,
+            "type": "metric",
+            "properties": {
+                "metrics": [
+                    [ { "expression": "SEARCH('{AWS/GameLiftStreams,ApplicationId,StreamClass} MetricName=\"FrameCaptureRate\"', 'Average', 300)", "id": "e1", "period": 300, "region": "us-west-2" } ]
+                ],
+                "view": "gauge",
+                "region": "us-west-2",
+                "yAxis": {
+                    "left": {
+                        "min": 0,
+                        "max": 60
+                    }
+                },
+                "period": 300,
+                "title": "Frame Capture Rate Average",
+                "setPeriodToTimeRange": false,
+                "sparkline": true,
+                "trend": true,
+                "liveData": true,
+                "singleValueFullPrecision": false,
+                "stat": "Average"
+            }
+        },
+        {
+            "height": 4,
+            "width": 12,
+            "y": 5,
+            "x": 0,
+            "type": "metric",
+            "properties": {
+                "metrics": [
+                    [ { "expression": "SEARCH('{AWS/GameLiftStreams,ApplicationId,StreamClass} MetricName=\"CPUUtilization\"', 'Average', 300)", "id": "e1", "period": 300 } ]
+                ],
+                "sparkline": true,
+                "view": "singleValue",
+                "region": "us-west-2",
+                "title": "CPU Average Utilization Average",
+                "period": 300,
+                "setPeriodToTimeRange": false,
+                "trend": true,
+                "stat": "Average"
+            }
+        },
+        {
+            "height": 4,
+            "width": 12,
+            "y": 5,
+            "x": 12,
+            "type": "metric",
+            "properties": {
+                "metrics": [
+                    [ { "expression": "SEARCH('{AWS/GameLiftStreams,ApplicationId,StreamClass} MetricName=\"MemoryUtilization\"', 'Average', 300)", "id": "e1", "period": 300, "region": "us-west-2" } ]
+                ],
+                "view": "singleValue",
+                "region": "us-west-2",
+                "period": 300,
+                "setPeriodToTimeRange": false,
+                "sparkline": true,
+                "trend": true,
+                "liveData": true,
+                "stat": "Average",
+                "title": "Memory Utilization Average"
+            }
+        }
+    ]
+}

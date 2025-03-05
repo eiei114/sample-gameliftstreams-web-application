@@ -1,0 +1,233 @@
+{
+    "variables": [
+        {
+            "type": "property",
+            "property": "region",
+            "inputType": "select",
+            "id": "region",
+            "label": "Region",
+            "defaultValue": "us-west-2",
+            "visible": true,
+            "values": [
+                {
+                    "value": "us-west-2",
+                    "label": "US West (Oregon)"
+                },
+                {
+                    "value": "us-east-1",
+                    "label": "US East (N. Virginia)"
+                },
+                {
+                    "value": "eu-west-1",
+                    "label": "EU (Ireland)"
+                },
+                {
+                    "value": "ap-northeast-1",
+                    "label": "Asia Pacific (Tokyo)"
+                }
+            ]
+        },
+        {
+            "type": "property",
+            "property": "Location",
+            "inputType": "select",
+            "id": "Location",
+            "label": "Location",
+            "defaultValue": "us-west-2",
+            "visible": true,
+            "values": [
+                {
+                    "value": "us-west-2",
+                    "label": "US West (Oregon)"
+                },
+                {
+                    "value": "us-east-1",
+                    "label": "US East (N. Virginia)"
+                },
+                {
+                    "value": "eu-west-1",
+                    "label": "U (Ireland)"
+                },
+                {
+                    "value": "ap-northeast-1",
+                    "label": "Asia Pacific (Tokyo)"
+                }
+            ]
+        }
+    ],
+    "widgets": [
+        {
+            "height": 4,
+            "width": 6,
+            "y": 0,
+            "x": 0,
+            "type": "metric",
+            "properties": {
+                "view": "singleValue",
+                "stacked": true,
+                "metrics": [
+                    [ { "expression": "SEARCH('{AWS/GameLiftStreams,Location,StreamGroupId} MetricName=\"IdleCapacity\"', 'Maximum', 300)", "id": "e1", "period": 300, "region": "us-west-2" } ]
+                ],
+                "region": "us-west-2",
+                "stat": "Average",
+                "period": 300,
+                "title": "Idle Capacity"
+            }
+        },
+        {
+            "height": 4,
+            "width": 6,
+            "y": 0,
+            "x": 6,
+            "type": "metric",
+            "properties": {
+                "metrics": [
+                    [ { "expression": "SEARCH('{AWS/GameLiftStreams,Location,StreamGroupId} MetricName=\"ActiveCapacity\"', 'Maximum', 300)", "id": "e1", "period": 300, "region": "us-west-2" } ]
+                ],
+                "view": "singleValue",
+                "stacked": false,
+                "region": "us-west-2",
+                "stat": "Average",
+                "period": 300,
+                "title": "Active Capacity"
+            }
+        },
+        {
+            "height": 4,
+            "width": 6,
+            "y": 0,
+            "x": 12,
+            "type": "metric",
+            "properties": {
+                "metrics": [
+                    [ { "expression": "SEARCH('{AWS/GameLiftStreams,Location,StreamGroupId} MetricName=\"TerminatedStreamSessions\"', 'Maximum', 300)", "id": "e1", "period": 300, "region": "us-west-2" } ]
+                ],
+                "view": "singleValue",
+                "stacked": false,
+                "region": "us-west-2",
+                "stat": "Average",
+                "period": 300,
+                "title": "Terminated StreamSessions"
+            }
+        },
+        {
+            "height": 4,
+            "width": 6,
+            "y": 0,
+            "x": 18,
+            "type": "metric",
+            "properties": {
+                "metrics": [
+                    [ { "expression": "SEARCH('{AWS/GameLiftStreams,Location,StreamGroupId} MetricName=\"ErroredStreamSessions\"', 'Maximum', 300)", "id": "e1", "period": 300, "region": "us-west-2" } ]
+                ],
+                "view": "singleValue",
+                "stacked": false,
+                "region": "us-west-2",
+                "title": "Errored Stream Sessions",
+                "period": 300,
+                "stat": "Average"
+            }
+        },
+        {
+            "height": 5,
+            "width": 6,
+            "y": 4,
+            "x": 0,
+            "type": "metric",
+            "properties": {
+                "view": "gauge",
+                "stacked": false,
+                "metrics": [
+                    [ { "expression": "SEARCH('{AWS/GameLiftStreams,Location,StreamGroupId} MetricName=\"FrameCaptureRate\"', 'Average', 300)", "id": "e1", "period": 300, "region": "us-west-2" } ]
+                ],
+                "region": "us-west-2",
+                "title": "Average Frame Capture Rate",
+                "period": 300,
+                "yAxis": {
+                    "left": {
+                        "min": 0,
+                        "max": 60
+                    }
+                },
+                "liveData": true
+            }
+        },
+        {
+            "height": 6,
+            "width": 24,
+            "y": 9,
+            "x": 0,
+            "type": "metric",
+            "properties": {
+                "view": "table",
+                "stacked": true,
+                "metrics": [
+                    [ { "expression": "SEARCH('{AWS/GameLiftStreams,Location,StreamGroupId} MetricName=\"SessionLength\"', 'Average', 300)", "id": "e1", "period": 300, "region": "us-west-2" } ]
+                ],
+                "region": "us-west-2",
+                "period": 300,
+                "title": "Session Length"
+            }
+        },
+        {
+            "height": 5,
+            "width": 6,
+            "y": 4,
+            "x": 6,
+            "type": "metric",
+            "properties": {
+                "sparkline": true,
+                "view": "singleValue",
+                "metrics": [
+                    [ { "expression": "SEARCH('{AWS/GameLiftStreams,Location,StreamGroupId} MetricName=\"CPUUtilization\"', 'Average', 300)", "id": "e1", "period": 300, "region": "us-west-2" } ]
+                ],
+                "region": "us-west-2",
+                "liveData": true,
+                "setPeriodToTimeRange": false,
+                "trend": true,
+                "title": "Average  CPU Utilization",
+                "period": 300
+            }
+        },
+        {
+            "height": 5,
+            "width": 6,
+            "y": 4,
+            "x": 12,
+            "type": "metric",
+            "properties": {
+                "view": "singleValue",
+                "stacked": true,
+                "title": "Average Memory Utilization",
+                "metrics": [
+                    [ { "expression": "SEARCH('{AWS/GameLiftStreams,Location,StreamGroupId} MetricName=\"MemoryUtilization\"', 'Average', 300)", "id": "e1", "period": 300 } ]
+                ],
+                "region": "us-west-2",
+                "liveData": true,
+                "setPeriodToTimeRange": false,
+                "sparkline": true,
+                "trend": true
+            }
+        },
+        {
+            "height": 5,
+            "width": 6,
+            "y": 4,
+            "x": 18,
+            "type": "metric",
+            "properties": {
+                "view": "singleValue",
+                "metrics": [
+                    [ { "expression": "SEARCH('{AWS/GameLiftStreams,Location,StreamGroupId} MetricName=\"AudioCaptureRate\"', 'Average', 300)", "id": "e1", "period": 300, "region": "us-west-2" } ]
+                ],
+                "region": "us-west-2",
+                "liveData": true,
+                "setPeriodToTimeRange": false,
+                "sparkline": true,
+                "trend": true,
+                "period": 300,
+                "title": "Average Audio Capture Rate"
+            }
+        }
+    ]
+}

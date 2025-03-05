@@ -1,0 +1,31 @@
+{
+  "name": "gameliftstreams-share-url",
+  "version": "2.5.0",
+  "private": true,
+  "description": "Example full-stack Amazon GameLift Streams application with web page and backend",
+  "main": "server.js",
+  "dependencies": {
+    "@aws-sdk/client-gameliftstreams": "file:dependencies/aws-sdk-client-gameliftstreams.tgz",
+    "chart.js": "^4.4.6",
+    "cors": "^2.8.5",
+    "express": "^4.21.0",
+    "express-rate-limit": "^7.4.1",
+    "express-sanitizer": "^1.0.6",
+    "express-session": "^1.18.1",
+    "express-validator": "^7.2.0",
+    "helmet": "^8.0.0",
+    "joi": "^17.13.3",
+    "node-fetch": "^2.7.0",
+    "serverless-http": "^3.2.0"
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "files": [
+    "server.js",
+    "public/**/*"
+  ],
+  "keywords": [],
+  "author": "",
+  "license": "MIT"
+}
