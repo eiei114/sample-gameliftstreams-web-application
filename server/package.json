@@ -5,7 +5,7 @@
   "description": "Example full-stack Amazon GameLift Streams application with web page and backend",
   "main": "server.js",
   "dependencies": {
-    "@aws-sdk/client-gameliftstreams": "file:dependencies/aws-sdk-client-gameliftstreams.tgz",
+    "@aws-sdk/client-gameliftstreams": "^3.272.0",
     "chart.js": "^4.4.6",
     "cors": "^2.8.5",
     "express": "^4.21.0",
