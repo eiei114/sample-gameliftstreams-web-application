@@ -46,7 +46,7 @@
     <!-- <link rel="apple-touch-icon" href="/path/to/icon.png"> -->
     <meta name="apple-mobile-web-app-title" content="GameLiftStreams">
 
-    <title>GameLift Streams Client Demo</title>
+    <title>Sample Amazon GameLift Streams Web Application</title>
 
     <!-- Charts  npm install chart.js-->
     <script type="module" src="node_modules/chart.js/dist/chart.umd.js"></script>
@@ -352,7 +352,20 @@
         document.addEventListener('DOMContentLoaded', function() {
             // settings to cookies
             document.getElementById('setupApplicationId').addEventListener('change', saveSettingsToCookies);
-            document.getElementById('setupStreamGroupId').addEventListener('change', saveSettingsToCookies);
+            if (IS_LOCAL) {
+                document.getElementById('setupStreamGroupId').addEventListener('change', saveSettingsToCookies);
+            } else {
+                // Hide the streamGroupElement
+                const streamGroupElement = document.getElementById('setupStreamGroupId');
+                if (streamGroupElement) {
+                    streamGroupElement.style.display = 'none';
+                }
+                // Hide the streamGroupRow 
+                const streamGroupRow = document.getElementById('streamGroupIdRow');
+                if (streamGroupRow) {
+                    streamGroupRow.style.display = 'none';
+                }
+            }
             document.getElementById('setupLocations').addEventListener('change', saveSettingsToCookies);
             document.getElementById('setupUserId').addEventListener('change', saveSettingsToCookies);
             document.getElementById('setupArgs').addEventListener('change', saveSettingsToCookies);
@@ -477,7 +490,8 @@
         <h1>Stream Demo - Configuration</h1>
         <table>
             <tr><td class="label-cell">User ID:</td><td><input type="text" id="setupUserId" value="Player1"></td></tr>
-            <tr><td class="label-cell">Stream Group ID:</td><td><input type="text" id="setupStreamGroupId"></td></tr>
+            <tr id="streamGroupIdRow"><td class="label-cell">Stream Group ID:</td><td><input type="text" id="setupStreamGroupId"></td></tr>
+
             <tr><td class="label-cell">Application ID:</td><td><input type="text" id="setupApplicationId"></td></tr>
             <tr>
                 <td class="label-cell">Locations:</td>
@@ -510,7 +524,7 @@
         <a href="#" onclick="document.getElementById('setupAdvanced').style.display = 'block'; return false">
             Show Advanced Settings
         </a>
-        <div id="setupClickToStart"><button id="clickToStartBtn" onclick="appValidateSetup() && appStartStreaming(IS_LOCAL)">Click To Start</button></div>
+        <div id="setupClickToStart"><button id="clickToStartBtn" onclick="appValidateSetup(IS_LOCAL) && appStartStreaming(IS_LOCAL)">Click To Start</button></div>
         <div id="setupValidationError"></div>
 
     </div>

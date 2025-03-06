@@ -21,7 +21,6 @@ Before using either component, you will need to obtain the latest Amazon GameLif
 2. Download the latest Web SDK bundle from the Amazon GameLift Streams [Getting Started](https://aws.amazon.com/gamelift/streams/getting-started) product page.
 3. Unzip the bundle.
 4. Copy the `gameliftstreams-x.x.x.mjs` and `gameliftstreams-x.x.x.js` files into the `server/public` folder of this project (next to the other source files like `index.html`).
-5. Copy the `GameLiftStreamsSamplePublisherService/dependencies/aws-sdk-client-gameliftstreams.tgz` file into the `server/dependencies` folder of this project.
 
 ### Step 3: Setup components
 
@@ -51,12 +50,13 @@ dos2unix install_server.sh
 To deploy this AWS Cloud Development Kit (CDK) stack, you'll need some additional toolsthe following permissions/configurations in your AWS account:
 
 1. **Base AWS Identity and Access Management (IAM) Permissions**:
-    - Amazon CloudFormation full access (`cloudformation:*`)
-    - AWS IAM role creation permissions (`iam:CreateRole`, `iam:PutRolePolicy`, etc.)
-    - AWS Lambda management permissions (`lambda:*`)
-    - Amazon API Gateway management permissions (`apigateway:*`)
-    - Amazon GameLift Streams permissions (`gameliftstreams:*`)
-    - Amazon CloudWatch Logs permissions (for AWS Lambda logging)
+   
+   - Amazon CloudFormation full access (`cloudformation:*`)
+   - AWS IAM role creation permissions (`iam:CreateRole`, `iam:PutRolePolicy`, etc.)
+   - AWS Lambda management permissions (`lambda:*`)
+   - Amazon API Gateway management permissions (`apigateway:*`)
+   - Amazon GameLift Streams permissions (`gameliftstreams:*`)
+   - Amazon CloudWatch Logs permissions (for AWS Lambda logging)
 
 2. **AWS CDK Bootstrap**: Your account/region needs to be bootstrapped for AWS CDK.
    Please see information about AWS CDK Bootstrap here: https://docs.aws.amazon.com/cdk/v2/guide/getting_started.html

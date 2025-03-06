@@ -219,14 +219,15 @@ async function appEnableMic() {
  * Validates setup form inputs
  * @returns {boolean} True if validation passes
  */
-function appValidateSetup() {
+function appValidateSetup(isLocal) {
     const getValue = (id) => document.getElementById(id).value;
     const checkString = (x) => { if (typeof(x) !== 'string') throw new Error(); return 1; };
     const err = (() => {
         if (!getValue('setupUserId').match(/^[-a-zA-Z0-9]{1,100}$/)) {
             return 'Invalid User ID - must be between 1 and 100 alphanumeric characters or hyphens';
         }
-        if (!getValue('setupStreamGroupId').match(/^(arn:.+[/])?sg-[a-zA-Z0-9]{5,}$/)) {
+        // Only validate Stream Group ID if isLocal is true
+        if (isLocal && !getValue('setupStreamGroupId').match(/^(arn:.+[/])?sg-[a-zA-Z0-9]{5,}$/)) {
             return 'Invalid Stream Group ID - check the GameLiftStreams console for valid Stream Group IDs';
         }
         try {
