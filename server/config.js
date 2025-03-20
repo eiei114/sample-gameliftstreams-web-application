@@ -1,7 +1,7 @@
 /**
  * config.js
  * 
- * Configuration file for GameLift Stream Web Sharing Demo
+ * Configuration file for Amazon GameLift Streams Web Sharing Demo
  * This file contains all configurable constants used throughout the application.
  * Modify these values to customize the server behavior for different environments.
  */
