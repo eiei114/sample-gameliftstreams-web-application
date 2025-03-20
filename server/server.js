@@ -456,7 +456,7 @@ app.get('/:filename', (req, res, next) => {
 });
 
 /**
- * Creates a new GameLift streaming session and returns a connection token.
+ * Creates a new Amazon GameLift Streams session and returns a connection token.
  * 
  * @route POST /api/CreateStreamSession
  * @param {Object} req - Express request object
