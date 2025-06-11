@@ -1,71 +1,71 @@
-## Sample Web Application for Amazon GameLift Streams
+## Amazon GameLift Streams用サンプルWebアプリケーション
 
-An easy-to-deploy web application example for Amazon GameLift Streams that enables browser-based game streaming with URL sharing capabilities.
+URL共有機能を備えたブラウザベースのゲームストリーミングを可能にする、Amazon GameLift Streams用の簡単にデプロイできるWebアプリケーションのサンプルです。
 
-**⚠️ IMPORTANT NOTICE**
-This code is example code for testing and evaluation purposes only and should not be used in a production capacity. For guidance on creating production client applications, including proper testing and evaluation procedures, refer to the section on the [web client](https://docs.aws.amazon.com/gameliftstreams/latest/developerguide/sdk.html) in the _Amazon GameLift Streams Developer Guide_.
+**⚠️ 重要なお知らせ**
+このコードはテストおよび評価目的のサンプルコードであり、本番環境での使用は推奨されません。本番クライアントアプリケーションの作成に関するガイダンス、適切なテストおよび評価手順については、_Amazon GameLift Streams 開発者ガイド_の[Webクライアント](https://docs.aws.amazon.com/gameliftstreams/latest/developerguide/sdk.html)セクションを参照してください。
 
-### Step 1: Check prerequisites
+### ステップ1: 前提条件の確認
 
-Make sure you have the following prerequisites before continuing to the next step:
+次のステップに進む前に、以下の前提条件を確認してください：
 
-1. An AWS account with proper credentials for programmatic access. For detailed instructions, refer to [Setting up Amazon GameLift Streams](https://docs.aws.amazon.com/gameliftstreams/latest/developerguide/setting-up.html) in the _Amazon GameLift Streams Developer Guide_.
-2. An Amazon GameLift Streams-supported web browser. Refer to [Supported browsers and input](https://docs.aws.amazon.com/gameliftstreams/latest/developerguide/sdk-browsers-input.html) in the _Amazon GameLift Streams Developer Guide_.
-3. Node.js 16 or newer. Download this from the [Node.js downloads](https://nodejs.org/en/download) page.
+1. プログラムによるアクセスに適切な認証情報を持つAWSアカウント。詳細な手順については、_Amazon GameLift Streams 開発者ガイド_の[Amazon GameLift Streamsのセットアップ](https://docs.aws.amazon.com/gameliftstreams/latest/developerguide/setting-up.html)を参照してください。
+2. Amazon GameLift Streams対応のWebブラウザ。_Amazon GameLift Streams 開発者ガイド_の[対応ブラウザと入力](https://docs.aws.amazon.com/gameliftstreams/latest/developerguide/sdk-browsers-input.html)を参照してください。
+3. Node.js 16以上。[Node.jsダウンロードページ](https://nodejs.org/en/download)からダウンロードしてください。
 
-### Step 2: Download the Web SDK dependencies
+### ステップ2: Web SDKの依存関係をダウンロード
 
-Before using either component, you will need to obtain the latest Amazon GameLift Streams Web SDK and drop it into the project files. 
+いずれのコンポーネントを使用する前に、最新のAmazon GameLift Streams Web SDKを取得し、プロジェクトファイルに配置する必要があります。
 
-1. Clone this repository to your computer.
-2. Download the latest [Web SDK bundle](https://gameliftstreams-public-website-assets.s3.us-west-2.amazonaws.com/AmazonGameLiftStreamsWebSDK-v1.0.0.zip) from the Amazon GameLift Streams.
-3. Unzip the bundle.
-4. Copy the `gameliftstreams-x.x.x.mjs` and `gameliftstreams-x.x.x.js` files into the `server/public` folder of this project (next to the other source files like `index.html`)
+1. このリポジトリをコンピュータにクローンします。
+2. Amazon GameLift Streamsから最新の[Web SDKバンドル](https://gameliftstreams-public-website-assets.s3.us-west-2.amazonaws.com/AmazonGameLiftStreamsWebSDK-v1.0.0.zip)をダウンロードします。
+3. バンドルを解凍します。
+4. `gameliftstreams-x.x.x.mjs`と`gameliftstreams-x.x.x.js`ファイルをこのプロジェクトの`server/public`フォルダにコピーします（`index.html`などの他のソースファイルの隣に）
 
-### Step 3: Setup components
+### ステップ3: コンポーネントのセットアップ
 
-You can choose to set up either or both of the following components, based on your needs:
+必要に応じて、以下のコンポーネントのいずれかまたは両方をセットアップできます：
 
-#### Local web server
+#### ローカルWebサーバー
 
 **Windows:**
 
-- Run `install_server.bat`
+- `install_server.bat`を実行
 
-**Linux/OSX:** Open Terminal and enter these commands:
+**Linux/OSX:** ターミナルを開いて以下のコマンドを入力：
 
 ```
 chmod +x install_server.sh
 ./install_server.sh
 ```
 
-If you have any issues running the install script, try:
+インストールスクリプトの実行に問題がある場合は、以下を試してください：
 
 ```
 dos2unix install_server.sh
 ```
 
-#### URL sharing
+#### URL共有
 
-To deploy this AWS Cloud Development Kit (CDK) stack, you'll need some additional toolsthe following permissions/configurations in your AWS account:
+このAWS Cloud Development Kit（CDK）スタックをデプロイするには、AWSアカウントに以下の追加ツールと権限/設定が必要です：
 
-1. **Base AWS Identity and Access Management (IAM) Permissions**:
+1. **基本的なAWS Identity and Access Management（IAM）権限**:
    
-   - Amazon CloudFormation full access (`cloudformation:*`)
-   - AWS IAM role creation permissions (`iam:CreateRole`, `iam:PutRolePolicy`, etc.)
-   - AWS Lambda management permissions (`lambda:*`)
-   - Amazon API Gateway management permissions (`apigateway:*`)
-   - Amazon GameLift Streams permissions (`gameliftstreams:*`)
-   - Amazon CloudWatch Logs permissions (for AWS Lambda logging)
+   - Amazon CloudFormationフルアクセス（`cloudformation:*`）
+   - AWS IAMロール作成権限（`iam:CreateRole`、`iam:PutRolePolicy`など）
+   - AWS Lambda管理権限（`lambda:*`）
+   - Amazon API Gateway管理権限（`apigateway:*`）
+   - Amazon GameLift Streams権限（`gameliftstreams:*`）
+   - Amazon CloudWatch Logs権限（AWS Lambdaログ用）
 
-2. **AWS CDK Bootstrap**: Your account/region needs to be bootstrapped for AWS CDK.
-   Please see information about AWS CDK Bootstrap here: https://docs.aws.amazon.com/cdk/v2/guide/getting_started.html
+2. **AWS CDKブートストラップ**: アカウント/リージョンはAWS CDK用にブートストラップされている必要があります。
+   詳細はこちらを参照してください：https://docs.aws.amazon.com/cdk/v2/guide/getting_started.html
 
-3. **AWS CLI Configuration**: Ensure your AWS CLI is configured with appropriate credentials. 
-   Please see information on how the AWS CLI is configured here: https://docs.aws.amazon.com/cli/v1/userguide/cli-chap-configure.html
+3. **AWS CLI設定**: AWS CLIが適切な認証情報で設定されていることを確認してください。
+   詳細はこちらを参照してください：https://docs.aws.amazon.com/cli/v1/userguide/cli-chap-configure.html
 
-4. **Deployment Environment Variables**: When deploying the AWS CDK stack, you can use the standard `CDK_DEFAULT_REGION` environment variable to specify the AWS region to use. This is considered a better practice than hardcoding the region in the code, as it makes the deployment more flexible and reusable. 
-   For example:
+4. **デプロイメント環境変数**: AWS CDKスタックをデプロイする際、AWSリージョンを指定するために標準の`CDK_DEFAULT_REGION`環境変数を使用できます。これはコード内でリージョンをハードコードするよりも良い方法とされています。
+   例：
    **Windows**:
    
        set CDK_DEFAULT_REGION=us-west-2 deploy_cdk.bat
@@ -74,82 +74,82 @@ To deploy this AWS Cloud Development Kit (CDK) stack, you'll need some additiona
    
        export CDK_DEFAULT_REGION=us-west-2 ./deploy_cdk.sh
 
-**Deploy and Install:**
+**デプロイとインストール:**
 
-1. On the Amazon GameLift Streams console Dashboard, select Stream groups.
+1. Amazon GameLift Streamsコンソールのダッシュボードで、Stream groupsを選択します。
 
-2. Select the stream group you wish to stream from and locate its 'Stream group ID'. You will need it to run the deployment script. Make sure the application(s) you wish to stream are associated with it.
+2. ストリーミング元のストリームグループを選択し、その「Stream group ID」を確認します。デプロイメントスクリプトを実行する際に必要になります。ストリーミングしたいアプリケーションが関連付けられていることを確認してください。
 
-3. Deploy the AWS CDK stack.
+3. AWS CDKスタックをデプロイします。
 
-**Windows:** Open Terminal and use command:
+**Windows:** ターミナルを開いて以下のコマンドを使用：
 
-Example:
+例：
 
 ```
 deploy_cdk.bat sg-000000000
-# use your stream group ID in place of 'sg-000000000'
+# 'sg-000000000'の代わりにあなたのストリームグループIDを使用
 ```
 
-**Linux/OSX:** Open Terminal and use commands:
+**Linux/OSX:** ターミナルを開いて以下のコマンドを使用：
 
 ```
 chmod +x deploy_cdk.sh
 ./deploy_cdk.sh sg-000000000
 ```
 
-If you have any issues running the script, try:
+スクリプトの実行に問題がある場合は、以下を試してください：
 
 ```
 dos2unix deploy_cdk.sh
 ```
 
-4. After deployment is complete, your shareable stream URL will be output in this format: 
+4. デプロイメントが完了すると、共有可能なストリームURLが以下の形式で出力されます：
    
-   https://[API-ID].execute-api.[REGION].amazonaws.com/prod/?userId={Player Name}&applicationId={Your-Application ID}&location={Your AWS Region}
+   https://[API-ID].execute-api.[REGION].amazonaws.com/prod/?userId={プレイヤー名}&applicationId={アプリケーションID}&location={AWSリージョン}
 
-## What's Included
+## 含まれる機能
 
-- **Automated Setup Scripts** - Check and install required dependencies:
+- **自動セットアップスクリプト** - 必要な依存関係の確認とインストール：
   
   - Node.js
   - AWS CLI
   - AWS CDK
-  - AWS credentials configuration (for CDK deployment)
+  - AWS認証情報設定（CDKデプロイメント用）
 
-- **Real-time Client Side WebRTC Metrics**
+- **リアルタイムクライアントサイドWebRTCメトリクス**
   
-  - WebRTC performance monitoring
+  - WebRTCパフォーマンスモニタリング
   
-  - Movable metric widgets
+  - 移動可能なメトリクスウィジェット
   
-  - Full-screen compatibility
+  - フルスクリーン対応
   
-  - CSV export capability
+  - CSVエクスポート機能
     
-    More about WebRTC Metrics here: https://www.w3.org/TR/webrtc-stats
+    WebRTCメトリクスの詳細はこちら：https://www.w3.org/TR/webrtc-stats
 
-- **Mobile Support**
+- **モバイルサポート**
   
-  - Automatic mobile device detection
-  - Customizable virtual controller
-  - Touch controls
-  - Orientation settings
+  - 自動モバイルデバイス検出
+  - カスタマイズ可能な仮想コントローラー
+  - タッチコントロール
+  - 画面の向き設定
 
-## Cost Information
+## コスト情報
 
-Typical use should be within AWS CloudFormation free tier, see:
+通常の使用はAWS CloudFormationの無料利用枠内に収まるはずです。詳細はこちら：
 [Provision Infrastructure As Code – AWS CloudFormation Pricing – Amazon Web Services](https://aws.amazon.com/cloudformation/pricing/)
 
-## Dependencies
+## 依存関係
 
-**AWS SDK Related:**
+**AWS SDK関連:**
 
 - @aws-sdk/client-bedrock-runtime
 - @aws-sdk/client-cloudwatch
 - aws-sdk
 
-**Third-party Packages:**
+**サードパーティパッケージ:**
 
 - chart.js
 - cors
@@ -157,30 +157,30 @@ Typical use should be within AWS CloudFormation free tier, see:
 - node-fetch
 - serverless-http 
 
-### Uninstall CDK Stack
+### CDKスタックのアンインストール
 
-1. **Delete the CloudFormation Stacks**:
+1. **CloudFormationスタックの削除**:
    
-   - Login to the AWS Management Console.
-   - Navigate to the AWS CloudFormation service.
-   - In the AWS CloudFormation dashboard, locate the stack named `gameliftstreams-share-url-cdk` and select it.
-   - Click the "Delete" button to delete this stack.
-   - Next, locate the stack named `CDKToolkit` and repeat the process to delete this stack.
-   - It's important to delete the stacks in this order, as the `CDKToolkit` stack may have dependencies on the `gameliftstreams-share-url-cdk` stack.
+   - AWS Management Consoleにログインします。
+   - AWS CloudFormationサービスに移動します。
+   - AWS CloudFormationダッシュボードで、`gameliftstreams-share-url-cdk`という名前のスタックを見つけて選択します。
+   - 「削除」ボタンをクリックしてこのスタックを削除します。
+   - 次に、`CDKToolkit`という名前のスタックを見つけて、同じプロセスを繰り返して削除します。
+   - スタックはこの順序で削除することが重要です。`CDKToolkit`スタックは`gameliftstreams-share-url-cdk`スタックに依存している可能性があるためです。
 
-2. **Delete the Amazon S3 Bucket**:
+2. **Amazon S3バケットの削除**:
    
-   - In the AWS Management Console, navigate to the Amazon S3 service.
-   - Locate the Amazon S3 bucket that was created.
-   - First, empty the contents of the bucket. You can do this by either:
-     - Manually deleting all objects in the bucket.
-     - Using the "Empty" button in the Amazon S3 console to empty the bucket.
-   - Once the bucket is empty, you can then delete the bucket itself.
+   - AWS Management Consoleで、Amazon S3サービスに移動します。
+   - 作成されたAmazon S3バケットを見つけます。
+   - まず、バケットの内容を空にします。これは以下のいずれかの方法で行えます：
+     - バケット内のすべてのオブジェクトを手動で削除する。
+     - Amazon S3コンソールの「空にする」ボタンを使用してバケットを空にする。
+   - バケットが空になったら、バケット自体を削除できます。
 
-## Security
+## セキュリティ
 
-See [CONTRIBUTING](CONTRIBUTING.md#security-issue-notifications) for more information.
+詳細は[CONTRIBUTING](CONTRIBUTING.md#security-issue-notifications)を参照してください。
 
-## License
+## ライセンス
 
-This library is licensed under the MIT-0 License. Please See the LICENSE file.
+このライブラリはMIT-0ライセンスの下でライセンスされています。LICENSEファイルを参照してください。
